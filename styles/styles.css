@@ -106,7 +106,7 @@ a {
 }
 
 
-#readStatus {
+.notRead {
     background-color: red;
     color: white;
     width: 6rem;
@@ -115,5 +115,17 @@ a {
     display: flex;
     justify-content: center;
     position: relative;
-    left: 2.5rem;
+    left: 2rem;
 }
+    
+    .read {
+        background-color: green;
+        color: white;
+        width: 6rem;
+        padding: .2rem;
+        border: none;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        left: 2rem;
+    }
