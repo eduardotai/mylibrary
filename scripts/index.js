@@ -1,28 +1,80 @@
-const table =document.getElementById('tableList')
+const table = document.getElementById('tableList');
+const myBooks = [];
+const newBook = document.getElementById('newBook');
 
+newBook.addEventListener('click', function () {
+    const index = myBooks.length;
+    const userBook = prompt('Enter book title');
+    const userAuthor = prompt('Enter book author');
+    const row = table.insertRow(0);
+    
+    row.insertCell(0).innerHTML = userBook;
+    row.insertCell(1).innerHTML = userAuthor;
+    const readStatusButton = document.createElement('button');
+    readStatusButton.className = 'readStatus';
+    readStatusButton.textContent = 'Not Read';
+    row.insertCell(2).appendChild(readStatusButton);
+    row.insertCell(3).innerHTML = `<button class="removeBook" type="button">Remove Book</button>`;
+    
+    myBooks.push({ userBook, userAuthor, read: false });
+    addEventListenersToRow(row, index, readStatusButton);
+});
 
-const myBooks = []
+function addEventListenersToRow(row, index, readStatusButton) {
+    const removeBookButton = row.querySelector('.removeBook');
 
-const newBook = document.getElementById('newBook')
+    readStatusButton.addEventListener('click', function () {
+        toggleReadStatus(index, readStatusButton);
+    });
 
-newBook.addEventListener('click', function(e) {
+    removeBookButton.addEventListener('click', function () {
+        removeBook(index);
+        row.remove();
+    });
+}
 
-    var row = table.insertRow(-1);
+function toggleReadStatus(index, button) {
 
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    var cell3 = row.insertCell(2);
-    var cell4 = row.insertCell(3);
+    if (index < 0 || index >= myBooks.length) {
+        console.error("Índice inválido:", index);
+        return;
+    }
+    const book = myBooks[index];
+    book.read = !book.read;
+    button.classList.toggle('read');
+    button.textContent = book.read ? 'Read' : 'Not Read';
+    button.style.backgroundColor = book.read ? 'green' : 'red'; // Aqui você altera a cor de fundo do botão
+}
 
+function removeBook(index) {
+    myBooks.splice(index, 0);
+}
 
-    const userBook = prompt('type a book to ad')
-    const userAuthor = prompt('type a book to ad')
-
-    cell1.innerHTML = `${userBook}`;   
-    cell2.innerHTML = `${userAuthor}`;
-    cell3.innerHTML = "<button id='readStatus' type='button'> Not Read </button>"
-
-    myBooks.push(userBook)
-    console.log(myBooks)    
-})
-
+function updateIndexes() {
+    // assumindo que você está começando da 1ª linha, ajuste se necessário
+    Array.from(table.rows).slice(1).forEach((row, updatedIndex) => { 
+        const readStatusButton = row.querySelector('.readStatus');
+        const removeBookButton = row.querySelector('.removeBook');
+        
+        // Obtém os listeners antigos para removê-los
+        const { readListener, removeListener } = listenersMap.get(updatedIndex) || {};
+        
+        // Remova os listeners antigos
+        if (readListener) readStatusButton.removeEventListener('click', readListener);
+        if (removeListener) removeBookButton.removeEventListener('click', removeListener);
+        
+        // Crie e adicione os novos listeners com o índice atualizado
+        const newReadListener = () => toggleReadStatus(updatedIndex, readStatusButton);
+        const newRemoveListener = () => {
+            removeBook(updatedIndex);
+            row.remove();
+            updateIndexes();
+        };
+        
+        readStatusButton.addEventListener('click', newReadListener);
+        removeBookButton.addEventListener('click', newRemoveListener);
+        
+        // Atualiza o mapa de listeners com os novos listeners
+        listenersMap.set(updatedIndex, { readListener: newReadListener, removeListener: newRemoveListener });
+    });
+}
