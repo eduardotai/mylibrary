@@ -1,0 +1,58 @@
+:root {
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+#mainContainer {
+    width: 100%;
+    height: 100vh;
+}
+
+#headerContainer {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    max-height: 13%;
+    position: relative;
+    top: 1.9rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    height: max-content;
+    position: sticky;
+    top: 2.7rem;
+}
+
+#mainContent {
+    background-color: rgb(218,218,218);
+    width: 100%;
+    height: 90%;   
+}
+
+#newBook {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 1.5rem;
+}
+
+.div {
+    background-color: white;
+    width: 70%;
+    height: 59vh;
+}
+
