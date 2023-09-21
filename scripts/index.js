@@ -43,7 +43,7 @@ function toggleReadStatus(index, button) {
     book.read = !book.read;
     button.classList.toggle('read');
     button.textContent = book.read ? 'Read' : 'Not Read';
-    button.style.backgroundColor = book.read ? 'green' : 'red'; // Aqui você altera a cor de fundo do botão
+    button.style.backgroundColor = book.read ? 'green' : 'red';
 }
 
 function removeBook(index) {
@@ -51,19 +51,15 @@ function removeBook(index) {
 }
 
 function updateIndexes() {
-    // assumindo que você está começando da 1ª linha, ajuste se necessário
     Array.from(table.rows).slice(1).forEach((row, updatedIndex) => { 
         const readStatusButton = row.querySelector('.readStatus');
         const removeBookButton = row.querySelector('.removeBook');
         
-        // Obtém os listeners antigos para removê-los
         const { readListener, removeListener } = listenersMap.get(updatedIndex) || {};
         
-        // Remova os listeners antigos
         if (readListener) readStatusButton.removeEventListener('click', readListener);
         if (removeListener) removeBookButton.removeEventListener('click', removeListener);
         
-        // Crie e adicione os novos listeners com o índice atualizado
         const newReadListener = () => toggleReadStatus(updatedIndex, readStatusButton);
         const newRemoveListener = () => {
             removeBook(updatedIndex);
@@ -74,13 +70,9 @@ function updateIndexes() {
         readStatusButton.addEventListener('click', newReadListener);
         removeBookButton.addEventListener('click', newRemoveListener);
         
-        // Atualiza o mapa de listeners com os novos listeners
         listenersMap.set(updatedIndex, { readListener: newReadListener, removeListener: newRemoveListener });
     });
 }
-    const userBook = prompt('type a book to ad')
-    const userAuthor = prompt('type a book to ad')
-
     cell1.innerHTML = `${userBook}`;   
     cell2.innerHTML = `${userAuthor}`;
     cell3.innerHTML = "<button id='readStatus' type='button'>Not Read</button>"

@@ -26,7 +26,12 @@ body {
     justify-content: space-evenly;
     max-height: 13%;
     position: relative;
+}
+
+#headerContainer h1 {
+    position: sticky;
     top: 1.9rem;
+    height: max-content;
 }
 
 a {
@@ -106,21 +111,7 @@ a {
 }
 
 
-<<<<<<< HEAD
 .readStatus {
-    background-color: red;
-}
-
-.removeBook {
-    background-color: yellow;
-}
-
-.read {
-    background-color: green; /* ou qualquer outra propriedade de estilo que você queira definir */
-    color: white; /* isso muda a cor do texto no botão */
-}
-=======
-.notRead {
     background-color: red;
     color: white;
     width: 6rem;
@@ -130,6 +121,7 @@ a {
     justify-content: center;
     position: relative;
     left: 2rem;
+    border-radius: 8px;
 }
     
     .read {
@@ -142,5 +134,47 @@ a {
         justify-content: center;
         position: relative;
         left: 2rem;
+        border-radius: 8px;
+
     }
->>>>>>> origin/main
+
+    .removeBook {
+        background-color: #E83100;
+        padding: .2rem;
+        color: white;
+        width: 6rem;
+        border: none;
+        display: flex;
+        justify-content: center;
+        position: relative;
+        left: 2.3rem;
+        border-radius: 8px;
+    }
+
+    #alertBox{
+        position:absolute;
+        top:100px;
+        left:100px;
+        border:solid 1px black;
+        background-color: #528CE0;
+        padding: 50px;
+        visibility: hidden;
+    }
+
+    @media (max-width: 1440px) {
+        #headerContainer {
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 1080px) {
+        #mainContainer {
+            height: 113vh;
+        }
+    }
+    
+    @media (max-width: 1080px) {
+        #booksDisplay {
+            width: 88%;
+        }
+    }
