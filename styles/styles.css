@@ -51,8 +51,69 @@ a {
 }
 
 .div {
-    background-color: white;
+    background-color: black;
     width: 70%;
     height: 59vh;
 }
 
+#newBook {
+    background: transparent;
+    text-decoration: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+
+#booksDisplay {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 20%;
+    left: 12%;
+}
+
+/* Basic reset and style for the table */
+.blueTable {
+    position: relative;
+    left: -10%;
+    width: 44%; /* Adjust this value to your desired width, e.g., 50% or 600px */
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif; /* Feel free to replace this with your preferred font */
+    background-color: transparent; /* Set the table background to transparent */
+}
+
+.blueTable th, .blueTable td {
+    border: 1px solid #666; /* This adds the lines between the cells */
+    padding: 8px 12px; /* Some padding for aesthetics */
+    text-align: left; /* Align the text to the left; you can change it if needed */
+}
+
+.blueTable thead th {
+    background-color: #2C3E50; /* A dark header color */
+    color: #FFF; /* White text color for the headers */
+}
+
+.blueTable tfoot td {
+    padding: 4px 12px;
+}
+
+.blueTable tbody tr:hover {
+    background-color: rgba(44, 62, 80, 0.1); /* A slight hover effect for the rows, making them a bit darker */
+}
+
+
+#readStatus {
+    background-color: red;
+    color: white;
+    width: 6rem;
+    padding: .2rem;
+    border: none;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    left: 2.5rem;
+}

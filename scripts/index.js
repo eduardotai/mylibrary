@@ -1,18 +1,28 @@
-const myBooks = [];  // You have this but you don't use it
+const table =document.getElementById('tableList')
 
-function addBookGrid() {
-    const newBook = document.getElementById('newBook');
-    newBook.addEventListener('click', function(e) {
-        const userBook = prompt('insert your book')
-        var nHTML = ''
 
-        myBooks.push(userBook)
+const myBooks = []
 
-        myBooks.forEach(function(book) {
-            nHTML += '<li>' + book + '</li>';
-        })
-    const divContent = document.querySelector('#mainContent').innerHTML = 'ul' + nHTML + '</ul>';
-    });
-}
+const newBook = document.getElementById('newBook')
 
-addBookGrid();
+newBook.addEventListener('click', function(e) {
+
+    var row = table.insertRow(-1);
+
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+
+
+    const userBook = prompt('type a book to ad')
+    const userAuthor = prompt('type a book to ad')
+
+    cell1.innerHTML = `${userBook}`;   
+    cell2.innerHTML = `${userAuthor}`;
+    cell3.innerHTML = "<button id='readStatus' type='button'> Not Read </button>"
+
+    myBooks.push(userBook)
+    console.log(myBooks)    
+})
+
