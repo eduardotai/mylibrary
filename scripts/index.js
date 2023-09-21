@@ -78,3 +78,31 @@ function updateIndexes() {
         listenersMap.set(updatedIndex, { readListener: newReadListener, removeListener: newRemoveListener });
     });
 }
+    const userBook = prompt('type a book to ad')
+    const userAuthor = prompt('type a book to ad')
+
+    cell1.innerHTML = `${userBook}`;   
+    cell2.innerHTML = `${userAuthor}`;
+    cell3.innerHTML = "<button id='readStatus' type='button'>Not Read</button>"
+
+    myBooks.push(userBook)
+    console.log(myBooks)  
+    
+    const buttonRead = document.getElementById('readStatus')
+
+
+buttonRead.classList.toggle('notRead');
+
+const notRead = document.getElementsByClassName('notRead')
+
+buttonRead.addEventListener('click', function() {
+    buttonRead.classList.toggle('read');
+    buttonRead.textContent = buttonRead.textContent === "Read" ? "Not Read" : "Read";
+})
+
+
+
+
+
+
+
